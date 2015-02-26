@@ -1,3 +1,5 @@
+Logo: ![Alt](/mddir.png "Title")
+
 Mddir generates a markdown file/folder structure for readme files
 
 https://www.npmjs.com/package/mddir
