@@ -1,5 +1,7 @@
 Mddir generates a markdown file/folder structure for readme files
 
+https://www.npmjs.com/package/mddir
+
 *Usage*
 
 node mddir

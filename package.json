@@ -1,0 +1,25 @@
+{
+  "name": "mddir",
+  "version": "1.0.0",
+  "description": "Generate markdown folder structure for readme files",
+  "main": "mddir.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JohnByrneRepo/mddir"
+  },
+  "keywords": [
+    "Markdown",
+    "Directory",
+    "Service",
+    "Parsing"
+  ],
+  "author": "John Byrne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JohnByrneRepo/mddir/issues"
+  },
+  "homepage": "https://github.com/JohnByrneRepo/mddir"
+}
