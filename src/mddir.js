@@ -2,22 +2,25 @@ var fs = require('fs'),
     path = require('path');
 
 var folders = {};
-var inputFolder = process.argv[2];
 var outputText = '';
 var markdownText = '';
 var depth = 0;
 var exported = false;
 var outputFileName = 'directoryList.md';
-var searchPath = path.join(__dirname, '../..');
-var key = searchPath;//.replace(/\//g,'');
-var startDepth = searchPath.split('/').length - 1;
-// process.argv[3];
+var relativePath = process.argv[2];
 
 var folderIgnoreList = [
   '.git',
-  'node_modules',
-  '.sass-cache'
+  'node_modules'
 ];
+
+if(relativePath === undefined){
+  relativePath = '../../../';
+}
+console.log("parsing forlder structure at: " + relativePath);
+var searchPath = path.join(__dirname, relativePath);
+var startDepth = searchPath.split('/').length - 1;
+var key = searchPath;
 
 var getFolders = function(path){
   fs.readdir(path, function(err, list){
@@ -29,8 +32,7 @@ var getFolders = function(path){
         if(folderDepth > depth){
           depth = folderDepth;
         }
-        var uniqueKey = path + '/' + item.replace(/\//g,'');
-        folders[uniqueKey] = {
+        folders[path] = {
           depth: folderDepth,
           parentFolder: path,
           path: path + '/' + item,
@@ -95,6 +97,7 @@ var listFolders = function(){
     // generateText();
     generateMarkdown();
     console.log(JSON.stringify(folders,null,2));
+    console.log('Generated markdown for: ' + searchPath);
   }
 };
 
@@ -167,17 +170,12 @@ var addFolderName = function(name){
     // }
   }
   markdownText += '|-- ' + folders[name].name + '\n';
-  // console.log('Folders[name]:');
-  // console.log(folders[name]);
   folders[name].files.forEach(function(f){
     addFileName(f, indent);
   });
   folders[name].marked = true;
   folders[name].folders.forEach(function(f){
-    console.log('folder')
-    console.log(f)
     var path = name + '/' + f;
-    console.log('adding ' + f.path);
     addFolderName(path);
   });    
 };
