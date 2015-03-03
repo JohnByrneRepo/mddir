@@ -4,11 +4,32 @@ Mddir generates a markdown file/folder structure for readme files
 
 https://www.npmjs.com/package/mddir
 
-*Usage*
+# Usage
 
-node mddir
+node mddir "../relative/path/"
 
-By default this will generate a markdown file structure called directoryList.md pointing one folder up from the node_module folder, e.g.
+# Example
+
+Open the terminal or command prompt and cd into the mddir/src folder.
+
+Usage instructions:
+```sh
+$ cd ~/Documents/demo-project
+$ pwd
+Users/username/Documents/demo-project
+$ npm install mddir --save
+$ cd node_modules/mddir/src
+$ pwd
+Users/username/Documents/node_modules/mddir/src
+$ ls
+mddir.js
+$ node mddir "../../../"
+// Exports 'directoryList.md' in mddir/src folder
+```
+
+If no path is specified mddir will default to three folders above the mddir/src folder (assumes that this is install in project/node_modules/mddir/src).
+
+### Example generated markdown file structure 'directoryList.md'
 
     |-- .bowerrc
     |-- .jshintrc
@@ -56,3 +77,39 @@ By default this will generate a markdown file structure called directoryList.md 
 You can edit the search path or folder ignore list manually
 
 Comments: html5css3@outlook.com
+
+### Version
+1.0.3
+
+
+### Installation
+
+You need Gulp installed globally:
+
+```sh
+$ npm i -g gulp
+```
+
+```sh
+$ git clone [git-repo-url] dillinger
+$ cd dillinger
+$ npm i -d
+$ mkdir -p public/files/{md,html,pdf}
+$ gulp build --prod
+$ NODE_ENV=production node app
+```
+
+### Todo's
+
+ - Write Tests
+ - Add Grunt task/wrapper
+
+License
+----
+
+MIT
+
+
+**Free Software, Hell Yeah!**
+
+*john byrne*: http://johnbyrne.info/
