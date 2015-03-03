@@ -27,7 +27,9 @@ $ node mddir "../../../"
 // Exports 'directoryList.md' in mddir/src folder
 ```
 
-If no path is specified mddir will default to three folders above the mddir/src folder (assumes that this is install in project/node_modules/mddir/src).
+If no path is specified mddir will default to three folders above the mddir/src folder (assumes that mddir is installed in project/node_modules/mddir/src).
+
+Currently ignores node_modules, and .git folders.
 
 ### Example generated markdown file structure 'directoryList.md'
 
@@ -74,35 +76,17 @@ If no path is specified mddir will default to three folders above the mddir/src 
             |-- mocks.users.js
             |-- mocks.widgets.js
 
-You can edit the search path or folder ignore list manually
-
 Comments: html5css3@outlook.com
 
 ### Version
 1.0.3
 
 
-### Installation
-
-You need Gulp installed globally:
-
-```sh
-$ npm i -g gulp
-```
-
-```sh
-$ git clone [git-repo-url] dillinger
-$ cd dillinger
-$ npm i -d
-$ mkdir -p public/files/{md,html,pdf}
-$ gulp build --prod
-$ NODE_ENV=production node app
-```
-
 ### Todo's
 
  - Write Tests
  - Add Grunt task/wrapper
+ -Readm git ignore for folder ignore list
 
 License
 ----
