@@ -79,14 +79,14 @@ Currently ignores node_modules, and .git folders.
 Comments: html5css3@outlook.com
 
 ### Version
-1.0.3
+1.0.5
 
 
 ### Todo's
 
  - Write Tests
  - Add Grunt task/wrapper
- -Readm git ignore for folder ignore list
+ - Read git ignore for folder ignore list
 
 License
 ----
