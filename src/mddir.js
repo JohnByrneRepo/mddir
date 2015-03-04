@@ -8,19 +8,16 @@ var depth = 0;
 var exported = false;
 var outputFileName = 'directoryList.md';
 var relativePath = process.argv[2];
+var searchPath = path.join(__dirname, relativePath);
+var key = searchPath;
+var startDepth = searchPath.split('/').length - 1;
 
 var folderIgnoreList = [
   '.git',
   'node_modules'
 ];
 
-if(relativePath === undefined){
-  relativePath = '../../../';
-}
-console.log("parsing forlder structure at: " + relativePath);
-var searchPath = path.join(__dirname, relativePath);
-var startDepth = searchPath.split('/').length - 1;
-var key = searchPath;
+console.log('Parsing folder structure at ' + __dirname + searchPath);
 
 var getFolders = function(path){
   fs.readdir(path, function(err, list){
@@ -32,7 +29,8 @@ var getFolders = function(path){
         if(folderDepth > depth){
           depth = folderDepth;
         }
-        folders[path] = {
+        var uniqueKey = path + '/';
+        folders[uniqueKey] = {
           depth: folderDepth,
           parentFolder: path,
           path: path + '/' + item,
@@ -97,7 +95,6 @@ var listFolders = function(){
     // generateText();
     generateMarkdown();
     console.log(JSON.stringify(folders,null,2));
-    console.log('Generated markdown for: ' + searchPath);
   }
 };
 
@@ -127,7 +124,7 @@ var generateText = function(){
   }
   fs.writeFile(outputFileName, outputText, function(err){
     if (err) return;
-    // console.log(outputFileName +  '>' + outputText);
+    console.log('Exported ' + outputFileName +  '>' + outputText);
   });
 };
 
@@ -145,10 +142,6 @@ var addFileName = function(name, indent){
 };
 
 var addFolderName = function(name){
-  console.log('name, parent, dept');
-  console.log(name);
-  // console.log(parentFolder);
-  console.log(depth);
   if(folders[name] === undefined){
     return;
   }
@@ -170,6 +163,8 @@ var addFolderName = function(name){
     // }
   }
   markdownText += '|-- ' + folders[name].name + '\n';
+  // console.log('Folders[name]:');
+  // console.log(folders[name]);
   folders[name].files.forEach(function(f){
     addFileName(f, indent);
   });
@@ -184,7 +179,7 @@ var generateMarkdown = function(){
   addFolderName(key);    
   fs.writeFile(outputFileName, markdownText, function(err){
     if (err) return;
-    // console.log(outputFileName +  '>' + outputText);
+    console.log('Exported ' +  __dirname + '/directoryList.md');
   });
 };
 
