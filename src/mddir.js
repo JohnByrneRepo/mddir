@@ -9,15 +9,13 @@ var exported = false;
 var outputFileName = 'directoryList.md';
 var relativePath = process.argv[2];
 var searchPath = path.join(__dirname, relativePath);
-var key = searchPath;
+var key = searchPath;//.replace(/\//g,'');
 var startDepth = searchPath.split('/').length - 1;
 
 var folderIgnoreList = [
   '.git',
   'node_modules'
 ];
-
-console.log('Parsing folder structure at ' + __dirname + searchPath);
 
 var getFolders = function(path){
   fs.readdir(path, function(err, list){
@@ -29,7 +27,7 @@ var getFolders = function(path){
         if(folderDepth > depth){
           depth = folderDepth;
         }
-        var uniqueKey = path + '/';
+        var uniqueKey = path + '/' + item.replace(/\//g,'');
         folders[uniqueKey] = {
           depth: folderDepth,
           parentFolder: path,
@@ -124,7 +122,7 @@ var generateText = function(){
   }
   fs.writeFile(outputFileName, outputText, function(err){
     if (err) return;
-    console.log('Exported ' + outputFileName +  '>' + outputText);
+    // console.log(outputFileName +  '>' + outputText);
   });
 };
 
@@ -142,6 +140,10 @@ var addFileName = function(name, indent){
 };
 
 var addFolderName = function(name){
+  console.log('name, parent, dept');
+  console.log(name);
+  // console.log(parentFolder);
+  console.log(depth);
   if(folders[name] === undefined){
     return;
   }
@@ -170,7 +172,10 @@ var addFolderName = function(name){
   });
   folders[name].marked = true;
   folders[name].folders.forEach(function(f){
+    console.log('folder')
+    console.log(f)
     var path = name + '/' + f;
+    console.log('adding ' + f.path);
     addFolderName(path);
   });    
 };
@@ -179,7 +184,7 @@ var generateMarkdown = function(){
   addFolderName(key);    
   fs.writeFile(outputFileName, markdownText, function(err){
     if (err) return;
-    console.log('Exported ' +  __dirname + '/directoryList.md');
+    // console.log(outputFileName +  '>' + outputText);
   });
 };
 
