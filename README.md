@@ -57,6 +57,7 @@ MIT
 
 ### Example generated markdown file structure 'directoryList.md'
 
+```
 |-- kibana
     |-- .bowerrc
     |-- .gitignore
@@ -1249,3 +1250,4 @@ MIT
                 |-- sinon-timers-1.8.2.js
                 |-- sinon-timers-ie-1.8.2.js
                 |-- sinon.js
+```
