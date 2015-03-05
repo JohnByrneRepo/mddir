@@ -10,6 +10,7 @@ var outputFileName = 'directoryList.md';
 var relativePath = process.argv[2];
 var searchPath = path.join(__dirname, relativePath);
 var key = searchPath;//.replace(/\//g,'');
+var startFolder = searchPath.split('/')[searchPath.split('/').length - 2];
 var startDepth = searchPath.split('/').length - 1;
 
 var folderIgnoreList = [
@@ -139,53 +140,88 @@ var addFileName = function(name, indent){
   markdownText += '|-- ' + name + '\n';
 };
 
-var addFolderName = function(name){
-  console.log('name, parent, dept');
-  console.log(name);
-  // console.log(parentFolder);
-  console.log(depth);
-  if(folders[name] === undefined){
-    return;
+var addFolderName = function(name, index){
+  if(folders[name] !== undefined){
+    if(folders[name].marked){
+      return;
+    }
+    var indent = (folders[name].depth - startDepth) * 4;
+    markdownText += '';
+    for(var i = 0; i < indent; i++){
+      markdownText += ' ';
+      // if(folders[name].folders.length > 0){
+      //   if(i % 3 === 0){
+      //     markdownText += '|';
+      //   } else {
+      //     markdownText += ' ';
+      //   }
+      // } else {
+      //   markdownText += ' ';
+      // }
+    }
+    if(index === 1){
+      console.log('adding root folder');
+      markdownText += '|-- ' + startFolder + '\n';
+    } else {
+      markdownText += '|-- ' + folders[name].name + '\n';
+    }
+    // console.log('Folders[name]:');
+    // console.log(folders[name]);
+    folders[name].files.forEach(function(f){
+      addFileName(f, indent);
+    });
+    folders[name].marked = true;
+    folders[name].folders.forEach(function(f){
+      var path = name + '/' + f;
+      addFolderName(path, 2);
+    });    
   }
-  if(folders[name].marked){
-    return;
-  }
-  var indent = (folders[name].depth - startDepth) * 4;
-  markdownText += '';
-  for(var i = 0; i < indent; i++){
-    markdownText += ' ';
-    // if(folders[name].folders.length > 0){
-    //   if(i % 3 === 0){
-    //     markdownText += '|';
-    //   } else {
-    //     markdownText += ' ';
-    //   }
-    // } else {
-    //   markdownText += ' ';
-    // }
-  }
-  markdownText += '|-- ' + folders[name].name + '\n';
-  // console.log('Folders[name]:');
-  // console.log(folders[name]);
-  folders[name].files.forEach(function(f){
-    addFileName(f, indent);
-  });
-  folders[name].marked = true;
-  folders[name].folders.forEach(function(f){
-    console.log('folder')
-    console.log(f)
-    var path = name + '/' + f;
-    console.log('adding ' + f.path);
-    addFolderName(path);
-  });    
 };
 
 var generateMarkdown = function(){
-  addFolderName(key);    
+  addFolderName(key, 1);
+
+  addSiblingfolderConnections();
+
   fs.writeFile(outputFileName, markdownText, function(err){
     if (err) return;
     // console.log(outputFileName +  '>' + outputText);
   });
+};
+
+String.prototype.replaceAt=function(index, character) {
+    return this.substr(0, index) + character + this.substr(index+character.length);
+}
+
+var addSiblingfolderConnections = function(){ 
+  var lines = markdownText.split('\n');
+  for(var i=1; i<lines.length; i++){
+    var line1 = lines[i-1];
+    var line2 = lines[i];
+    for(var j=0; j<line2.length; j++){
+      var char1 = line1.charAt(j);
+      var char2 = line2.charAt(j);
+      // console.log('comparing ' + char1 + ' with ' + char2);
+      // Search for folder below to connect to
+      var foundSibling = false;
+      for(var k=i; k<lines.length; k++){
+        var charBelow = lines[k].charAt(j);
+        if(charBelow !== '|' && charBelow !== ' '){
+          break;
+        }
+        if(charBelow === '|'){
+          foundSibling = true;
+        }
+      }
+      if(foundSibling && char1 === '|' && char2 === ' '){
+        line2 = line2.replaceAt(j, '|');
+        lines[i] = line2;
+      }
+    }
+  }
+  console.log('lines');
+  console.log(lines);
+  markdownText = lines.join('\n');
 };
 
 folders[key] = {

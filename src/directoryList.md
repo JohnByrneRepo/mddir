@@ -1,4 +1,4 @@
-|-- 
+|-- mddir
     |-- AUTHORS
     |-- CHANGES.md
     |-- LICENSE.txt
@@ -6,3 +6,7 @@
     |-- logo.svg
     |-- mddir.png
     |-- package.json
+    |-- src
+        |-- directoryList.md
+        |-- mddir.js
+        |-- npm-debug.log
