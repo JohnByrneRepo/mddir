@@ -15,11 +15,6 @@ var startFolder = searchPath.split('/')[searchPath.split('/').length - 2];
 var startDepth = searchPath.split('/').length - 1;
 var currentWorkingDirectory = process.cwd();
 
-console.log(path.resolve('.'));
-console.log(path.resolve('/Users/mcadelago/WebstormProjects/mddir'));
-
-console.log(path.join('/Users/mcadelago/WebstormProjects/mddir', '..'));
-
 var folderIgnoreList = [
   '.git',
   'node_modules'
