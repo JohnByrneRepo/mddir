@@ -21,5 +21,12 @@
   "bugs": {
     "url": "https://github.com/JohnByrneRepo/mddir/issues"
   },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "mddir": "./src/mddir.js"
+  },
   "homepage": "https://github.com/JohnByrneRepo/mddir"
 }

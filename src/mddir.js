@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var fs = require('fs'),
     path = require('path');
 
@@ -7,11 +9,16 @@ var markdownText = '';
 var depth = 0;
 var exported = false;
 var outputFileName = 'directoryList.md';
-var relativePath = process.argv[2];
-var searchPath = path.join(__dirname, relativePath);
+var searchPath = path.resolve(process.argv[2] || '.');
 var key = searchPath;//.replace(/\//g,'');
 var startFolder = searchPath.split('/')[searchPath.split('/').length - 2];
 var startDepth = searchPath.split('/').length - 1;
+var currentWorkingDirectory = process.cwd();
+
+console.log(path.resolve('.'));
+console.log(path.resolve('/Users/mcadelago/WebstormProjects/mddir'));
+
+console.log(path.join('/Users/mcadelago/WebstormProjects/mddir', '..'));
 
 var folderIgnoreList = [
   '.git',
@@ -183,7 +190,7 @@ var generateMarkdown = function(){
 
   addSiblingfolderConnections();
 
-  fs.writeFile(outputFileName, markdownText, function(err){
+  fs.writeFile(currentWorkingDirectory + '/' + outputFileName, markdownText, function(err){
     if (err) return;
     // console.log(outputFileName +  '>' + outputText);
   });
