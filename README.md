@@ -11,12 +11,11 @@ node mddir "../relative/path/"
 To install: npm install mddir -g
 
 To generate markdown for current directory: mddir
-
 To generate for any absolute path: mddir /absolute/path
+To generate for a relative path: mddir ~/Documents/whatever.
 
-To generate for a relative path: mddir ~/Documents/whatever
+The md file gets generated in your working directory.
 
-The md file gets generated in your working directory instead of in the mddir project folder. Let me know what you think.
 
 Currently ignores node_modules, and .git folders.
 
