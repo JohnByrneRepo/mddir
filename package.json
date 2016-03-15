@@ -1,6 +1,6 @@
 {
   "name": "mddir",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "Generate markdown folder structure for readme files",
   "main": "mddir.js",
   "scripts": {
