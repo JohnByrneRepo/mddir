@@ -8,26 +8,15 @@ https://www.npmjs.com/package/mddir
 
 node mddir "../relative/path/"
 
-# Example
+To install: npm install mddir -g
 
-Open the terminal or command prompt and cd into the mddir/src folder.
+To generate markdown for current directory: mddir
 
-Usage instructions:
-```sh
-$ cd ~/Documents/demo-project
-$ pwd
-Users/username/Documents/demo-project
-$ npm install mddir --save
-$ cd node_modules/mddir/src
-$ pwd
-Users/username/Documents/demo-project/node_modules/mddir/src
-$ ls
-mddir.js
-$ node mddir "../../../"
-// Exports 'directoryList.md' in mddir/src folder
-```
+To generate for any absolute path: mddir /absolute/path
 
-If no path is specified mddir will default to three folders above the mddir/src folder (assumes that mddir is installed in project/node_modules/mddir/src).
+To generate for a relative path: mddir ~/Documents/whatever
+
+The md file gets generated in your working directory instead of in the mddir project folder. Let me know what you think.
 
 Currently ignores node_modules, and .git folders.
 
