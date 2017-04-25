@@ -176,7 +176,7 @@ var addFolderName = function(name, index){
     folders[name].folders.forEach(function(f){
       var path = name + '/' + f;
       addFolderName(path, 2);
-    });    
+    });
   }
 };
 
@@ -195,7 +195,7 @@ String.prototype.replaceAt=function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
 }
 
-var addSiblingfolderConnections = function(){ 
+var addSiblingfolderConnections = function(){
   var lines = markdownText.split('\n');
   for(var i=1; i<lines.length; i++){
     var line1 = lines[i-1];
@@ -221,9 +221,8 @@ var addSiblingfolderConnections = function(){
       }
     }
   }
-  console.log('lines');
-  console.log(lines);
   markdownText = lines.join('\n');
+  console.log(markdownText)
 };
 
 folders[key] = {
@@ -247,4 +246,4 @@ list.forEach(function(item){
   });
   folders[key].parsed = true;
 });
-getFolders(searchPath); 
+getFolders(searchPath);
