@@ -58,11 +58,6 @@ License
 MIT
 
 
-**Free Software, Hell Yeah!**
-
-*john byrne*: http://johnbyrne.info/
-
-
 
 ### Example generated markdown file structure 'directoryList.md'
 
