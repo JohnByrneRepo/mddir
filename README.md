@@ -20,6 +20,10 @@ The md file gets generated in your working directory.
 
 Currently ignores node_modules, and .git folders.
 
+# Windows Users
+
+Locate your npm bin folder with 'npm bin'. On my mac it's '/usr/local/bin/node_modules/.bin'. Change into that folder 'cd /usr/local/bin/node_modules/.bin', and run 'set ff=unix'. This convert line endings to Unix instead of Dos. Then run as normal with: node mddir "../relative/path/".
+
 Comments: html5css3@outlook.com
 
 ### Version
