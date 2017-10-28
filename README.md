@@ -20,9 +20,25 @@ The md file gets generated in your working directory.
 
 Currently ignores node_modules, and .git folders.
 
-# Windows Users
+# Troubleshooting
 
-Locate your npm bin folder with 'npm bin'. On my mac it's '/usr/local/bin/node_modules/.bin'. Change into that folder 'cd /usr/local/bin/node_modules/.bin', and run 'set ff=unix'. This convert line endings to Unix instead of Dos. Then run as normal with: node mddir "../relative/path/".
+If you receive the error 'node\r: No such file or directory', the issue is that your operating system uses different line endings and mddir can't parse them without you explicitly setting the line ending style to Unix. This usually affects Windows, but also some versions of Linux. Setting line endings to Unix style has to be performed within the mddir npm global bin folder.
+
+# Line endings fix
+
+Get npm bin folder path with:
+
+```npm config get prefix```
+
+Cd into that folder
+
+brew install dos2unix
+
+dos2unix lib/node_modules/mddir/src/mddir.js
+
+This converts line endings to Unix instead of Dos
+
+Then run as normal with: node mddir "../relative/path/".
 
 Comments: html5css3@outlook.com
 
