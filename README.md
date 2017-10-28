@@ -24,6 +24,8 @@ Currently ignores node_modules, and .git folders.
 
 If you receive the error 'node\r: No such file or directory', the issue is that your operating system uses different line endings and mddir can't parse them without you explicitly setting the line ending style to Unix. This usually affects Windows, but also some versions of Linux. Setting line endings to Unix style has to be performed within the mddir npm global bin folder.
 
+It's possible I merged a pr on Windows which may have caused this issue, but in general it is documented online that	Carriage Return Line Feed issues are unpredictable in npm (I believe possibly in part due to the IDE or code editor used), and I remain hopeful that npm will resolve this or shed some light on it in future.
+
 # Line endings fix
 
 Get npm bin folder path with:
