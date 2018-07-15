@@ -52,6 +52,7 @@ License
 MIT
 
 Example generated markdown file structure 'directoryList.md'
+```
 |-- kibana
     |-- .bowerrc
     |-- .gitignore
@@ -401,3 +402,4 @@ Example generated markdown file structure 'directoryList.md'
     |   |   |   |   |-- tooltip.js
     |   |   |   |-- typeahead
     |   |   |   |   |-- _input.js
+```
