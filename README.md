@@ -382,6 +382,7 @@ John Byrne <html5css3@outlook.com> (https://github.com/johnbyrnerepo)
 ## Contributors
 
 Michael Cadelago (https://github.com/ex1machina)
+
 Dan Stephenson (https://github.com/ispyhumanfly)
 
 ## Issues
