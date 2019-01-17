@@ -1,57 +1,24 @@
-Mddir generates a markdown file/folder structure for readme files
+![Alt](/mddir.png "Title")
 
-https://www.npmjs.com/package/mddir
+# Mddir 
 
-Usage
-node mddir "../relative/path/"
+Generate a Markdown folder structure of your project for README files.
 
-To install: npm install mddir -g
+## Installation
+    npm install mddir -g
 
-To generate markdown for current directory: mddir
+### Usage
+The Mddir generator can accept any path variant you provide. The generated Markdown file will be placed in your current working directory. Mddir currently ignores node_modules and .git folders. 
 
-To generate for any absolute path: mddir /absolute/path
+#### Windows 
+    mddir /path
 
-To generate for a relative path: mddir ~/Documents/whatever.
+#### Unix Variants
+    mddir-nix /path
 
-The md file gets generated in your working directory.
+#### Example Output
+Example generated Markdown file structure 'directoryList.md'
 
-Currently ignores node_modules, and .git folders.
-
-Troubleshooting
-If you receive the error 'node\r: No such file or directory', the issue is that your operating system uses different line endings and mddir can't parse them without you explicitly setting the line ending style to Unix. This usually affects Windows, but also some versions of Linux. Setting line endings to Unix style has to be performed within the mddir npm global bin folder.
-
-It's possible I merged a pr on Windows which may have caused this issue, but in general it is documented online that	Carriage Return Line Feed issues are unpredictable in npm (I believe possibly in part due to the IDE or code editor used), and I remain hopeful that npm will resolve this or shed some light on it in future.
-
-Refer to this thread for a discussion on npm CRLF issues: https://github.com/npm/npm/issues/13203
-
-Line endings fix
-Get npm bin folder path with:
-
-npm config get prefix
-
-Cd into that folder
-
-brew install dos2unix
-
-dos2unix lib/node_modules/mddir/src/mddir.js
-
-This converts line endings to Unix instead of Dos
-
-Then run as normal with: node mddir "../relative/path/".
-
-Comments: html5css3@outlook.com
-
-Version
-1.0.8
-
-Todo's
-Write Tests
-Add Grunt task/wrapper
-Read git ignore for folder ignore list
-License
-MIT
-
-Example generated markdown file structure 'directoryList.md'
 ```
 |-- kibana
     |-- .bowerrc
@@ -403,3 +370,25 @@ Example generated markdown file structure 'directoryList.md'
     |   |   |   |-- typeahead
     |   |   |   |   |-- _input.js
 ```
+
+## Comments 
+[html5css3@outlook.com](mailto://html5css3@outlook.com)
+
+## Todo
+* Write Tests
+* Add Grunt task/wrapper
+* Read git ignore for folder ignore list
+
+## Author
+John Byrne <html5css3@outlook.com> (https://github.com/johnbyrnerepo)
+
+## Contributors
+
+Michael Cadelago (https://github.com/ex1machina)
+Dan Stephenson (https://github.com/ispyhumanfly)
+
+## Issues
+[https://github.com/JohnByrneRepo/mddir/issues](https://github.com/JohnByrneRepo/mddir/issues)
+
+## License
+MIT
