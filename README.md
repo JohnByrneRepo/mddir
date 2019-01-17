@@ -5,19 +5,23 @@
 Generate a Markdown folder structure of your project for README files.
 
 ## Installation
-    npm install mddir -g
+Currently due to an issue with NPM on some platforms, global installation will fail. However, the yarn command handles this very gracefully, and, should be used in cases of global installation of Mddir.
+
+### Using Yarn
+    yarn global add mddir
+    yarn add mddir
+### Using NPM
+    npm install mddir --save
 
 ### Usage
-The Mddir generator can accept any path variant you provide. The generated Markdown file will be placed in your current working directory. Mddir currently ignores node_modules and .git folders. 
+The Mddir generator can accept any path variant you provide. The generated Markdown file will be placed in your current working directory. Mddir currently ignores node_modules and .git folders by default.
 
-#### Windows 
     mddir /path
-
-#### Unix Variants
-    mddir-nix /path
+    mddir ../path
+    mddir ~/
 
 #### Example Output
-Example generated Markdown file structure 'directoryList.md'
+Example generated Markdown file structure stored in directoryList.md
 
 ```
 |-- kibana
