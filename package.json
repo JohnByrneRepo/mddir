@@ -24,9 +24,9 @@
     "node": ">=0.10.0"
   },
   "preferGlobal": true,
+  "main": "./src/mddir.js",
   "bin": {
-    "mddir": "./src/mddir.js",
-	"mddir-nix": "./src/mddir-nix.js"
+    "mddir": "./src/mddir.js"
   },
   "homepage": "https://github.com/JohnByrneRepo/mddir"
 }
