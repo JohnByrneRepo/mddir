@@ -371,9 +371,6 @@ Example generated Markdown file structure 'directoryList.md'
     |   |   |   |   |-- _input.js
 ```
 
-## Comments 
-[html5css3@outlook.com](mailto://html5css3@outlook.com)
-
 ## Todo
 * Write Tests
 * Add Grunt task/wrapper
