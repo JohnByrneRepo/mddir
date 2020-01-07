@@ -1,15 +1,17 @@
-![Alt](/mddir.png "Title")
 
-# Mddir 
+# Mddir
 
 Generate a Markdown folder structure of your project for README files.
 
 ## Installation
+
 Currently due to an issue with NPM on some platforms, global installation will fail. However, the yarn command handles this very gracefully, and, should be used in cases of global installation of Mddir.
 
 ### Using Yarn
+
     yarn global add mddir
     yarn add mddir
+
 ### Using NPM
     npm install mddir --save
 
