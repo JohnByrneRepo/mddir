@@ -9,11 +9,21 @@ var markdownText = '';
 var depth = 0;
 var exported = false;
 var outputFileName = 'directoryList.md';
-var searchPath = path.resolve(process.argv[2] || '.');
+var inputPath = process.argv[2] || '.';
+var searchPath = path.resolve(inputPath);
 var key = searchPath;//.replace(/\//g,'');
-var startFolder = searchPath.split('/')[searchPath.split('/').length - 2];
-var startDepth = searchPath.split('/').length - 1;
+var startFolder = '';
+var startDepth = 0;
 var currentWorkingDirectory = process.cwd();
+
+if (inputPath === '.') {
+  var paths = searchPath.split(path.sep) // Distinguish between windows and Linux separators
+  startFolder = paths[paths.length - 1];
+} else {
+  var paths = searchPath.split('/');
+  startFolder = paths[paths.length - 2];
+  startDepth = paths.length - 1;
+}
 
 var folderIgnoreList = [
   '.git',
